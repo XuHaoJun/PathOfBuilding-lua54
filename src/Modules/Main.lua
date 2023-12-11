@@ -34,10 +34,10 @@ LoadModule("Modules/BuildSiteTools")
 	end
 end]]
 
-if arg and isValueInTable(arg, "--no-jit") then
-	require("jit").off()
-	ConPrintf("JIT Disabled")
-end
+-- if arg and isValueInTable(arg, "--no-jit") then
+-- 	require("jit").off()
+-- 	ConPrintf("JIT Disabled")
+-- end
 
 local tempTable1 = { }
 local tempTable2 = { }
