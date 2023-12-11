@@ -97,19 +97,19 @@ function main:Init()
 	self.POESESSID = ""
 
 	local ignoreBuild
-	if arg[1] then
-		buildSites.DownloadBuild(arg[1], nil, function(isSuccess, data)
-			if not isSuccess then
-				self:SetMode("BUILD", false, data)
-			else
-				local xmlText = Inflate(common.base64.decode(data:gsub("-","+"):gsub("_","/")))
-				self:SetMode("BUILD", false, "Imported Build", xmlText)
-				self.newModeChangeToTree = true
-			end
-		end)
-		arg[1] = nil -- Protect against downloading again this session.
-		ignoreBuild = true
-	end
+	-- if arg[1] then
+	-- 	buildSites.DownloadBuild(arg[1], nil, function(isSuccess, data)
+	-- 		if not isSuccess then
+	-- 			self:SetMode("BUILD", false, data)
+	-- 		else
+	-- 			local xmlText = Inflate(common.base64.decode(data:gsub("-","+"):gsub("_","/")))
+	-- 			self:SetMode("BUILD", false, "Imported Build", xmlText)
+	-- 			self.newModeChangeToTree = true
+	-- 		end
+	-- 	end)
+	-- 	arg[1] = nil -- Protect against downloading again this session.
+	-- 	ignoreBuild = true
+	-- end
 
 	if not ignoreBuild then
 		self:SetMode("BUILD", false, "Unnamed build")

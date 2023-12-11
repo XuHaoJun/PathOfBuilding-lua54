@@ -32,51 +32,51 @@ function math.pow(a, b)
     return a ^ b
 end
 
-local Path = require('path')
-_oldLoadfile = loadfile
-function loadfile(path)
-  if Path.isabs(path) then
-    return _oldLoadfile(path)
-  else
-    modifiedPath = __pobDirPath__ .. "/" .. path
-    -- print("loadfile: " .. modifiedPath)
-    return _oldLoadfile(modifiedPath)
-  end
-end
-_oldDofile = dofile
-function dofile(path)
-  if Path.isabs(path) then
-    return _oldDofile(path)
-  else
-    modifiedPath = __pobDirPath__ .. "/" .. path
-    -- print(""dofile: "" .. modifiedPath)
-    return _oldDofile(modifiedPath)
-  end
-end
-_oldIo = io
-local function open(path, mode)
-  if Path.isabs(path) then
-    return _oldIo.open(path)
-  else
-    if string.match(path, '%.png') or string.match(path, '%.jpg') then
-      return nil
-    else
-      modifiedPath = __pobDirPath__ .. "/" .. path
-      -- print(""io.open: "" .. modifiedPath)
-      return _oldIo.open(modifiedPath, mode)
-    end
-  end
-end
-local function lines(path)
-  if Path.isabs(path) then
-    return _oldIo.lines(path)
-  else
-    modifiedPath = __pobDirPath__ .. '/' .. path
-    -- print(""io.lines: "" .. modifiedPath)
-    return _oldIo.lines(modifiedPath)
-  end
-end
-io = { open=open, lines=lines, read=_oldIo.read, write=_oldIo.write, close=_oldIo.close, stderr=_oldIo.stderr }
+-- local Path = require('path')
+-- _oldLoadfile = loadfile
+-- function loadfile(path)
+--   if Path.isabs(path) then
+--     return _oldLoadfile(path)
+--   else
+--     modifiedPath = __pobDirPath__ .. "/" .. path
+--     -- print("loadfile: " .. modifiedPath)
+--     return _oldLoadfile(modifiedPath)
+--   end
+-- end
+-- _oldDofile = dofile
+-- function dofile(path)
+--   if Path.isabs(path) then
+--     return _oldDofile(path)
+--   else
+--     modifiedPath = __pobDirPath__ .. "/" .. path
+--     -- print(""dofile: "" .. modifiedPath)
+--     return _oldDofile(modifiedPath)
+--   end
+-- end
+-- _oldIo = io
+-- local function open(path, mode)
+--   if Path.isabs(path) then
+--     return _oldIo.open(path)
+--   else
+--     if string.match(path, '%.png') or string.match(path, '%.jpg') then
+--       return nil
+--     else
+--       modifiedPath = __pobDirPath__ .. "/" .. path
+--       -- print(""io.open: "" .. modifiedPath)
+--       return _oldIo.open(modifiedPath, mode)
+--     end
+--   end
+-- end
+-- local function lines(path)
+--   if Path.isabs(path) then
+--     return _oldIo.lines(path)
+--   else
+--     modifiedPath = __pobDirPath__ .. '/' .. path
+--     -- print(""io.lines: "" .. modifiedPath)
+--     return _oldIo.lines(modifiedPath)
+--   end
+-- end
+-- io = { open=open, lines=lines, read=_oldIo.read, write=_oldIo.write, close=_oldIo.close, stderr=_oldIo.stderr }
 
 t_insert = table.insert
 t_remove = table.remove
